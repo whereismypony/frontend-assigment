@@ -23,6 +23,23 @@ function App() {
   return array;
   }
 
+  // Helper Function
+  const optionClicked = (clickedOption, isCorrect) => {
+    if(clickedOption === isCorrect){
+      setScore(score +1);
+    }
+
+    if (CurrentQuestion +1 < questions.length){
+      setCurrentQuestion(CurrentQuestion + 1);
+    }else{
+      setFinalResults(true);
+    }
+  }
+  const restartGame = () =>{
+    window.location.reload(false);
+  }
+
+
   useEffect(() => {
       fetch('https://opentdb.com/api.php?amount=10&category=9&type=multiple')
       .then(res => res.json())
@@ -47,7 +64,7 @@ function App() {
     shuffleAnswers(questions[CurrentQuestion].incorrect_answers);
     return (
       <div className="App">
-        <h1>Quiz </h1>
+        <h1>The Random Quiz</h1>
 
         <h2>Current Score: {score}</h2>
 
@@ -56,10 +73,10 @@ function App() {
           < div className='final-results'>
             <h1>Final Results</h1>
             <h2>
-              2 OUT OF 10 CORRECT - (20%)
+              {score} OUT OF {questions.length} CORRECT - ({(100/questions.length)*score}%)
             </h2>
 
-            <button>Restart with new Questions</button>
+            <button onClick={() => restartGame()}>Restart with new Questions</button>
           </div>
         ) : (
 
@@ -70,10 +87,10 @@ function App() {
               <h3 className='question-text'>{questions[CurrentQuestion].question}</h3>
               {console.log(questions[CurrentQuestion].correct_answer)}
             <ul>
-              <li>{questions[CurrentQuestion].incorrect_answers[0]}</li>
-              <li>{questions[CurrentQuestion].incorrect_answers[1]}</li>
-              <li>{questions[CurrentQuestion].incorrect_answers[2]}</li>
-              <li>{questions[CurrentQuestion].incorrect_answers[3]}</li>
+              <li onClick={() => optionClicked(questions[CurrentQuestion].incorrect_answers[0], questions[CurrentQuestion].correct_answer)}>{questions[CurrentQuestion].incorrect_answers[0]}</li>
+              <li onClick={() => optionClicked(questions[CurrentQuestion].incorrect_answers[1], questions[CurrentQuestion].correct_answer)}>{questions[CurrentQuestion].incorrect_answers[1]}</li>
+              <li onClick={() => optionClicked(questions[CurrentQuestion].incorrect_answers[2], questions[CurrentQuestion].correct_answer)}>{questions[CurrentQuestion].incorrect_answers[2]}</li>
+              <li onClick={() => optionClicked(questions[CurrentQuestion].incorrect_answers[3], questions[CurrentQuestion].correct_answer)}>{questions[CurrentQuestion].incorrect_answers[3]}</li>
             </ul>
           </div>
         )}

@@ -1,14 +1,21 @@
+html, body{
+  margin: 0;
+  height: 100%;
+  background-color: #2A3759;
+}
+
 .App {
   text-align: center;
+  font-family: 'Roboto Mono', monospace;
+  color: white;
 }
 
 .question-card{
   margin: 0 auto;
 
-  background-color: gray;
+  background-color: #29334e46;
   padding: 16px;
   border-radius: 16px;
-  color: white;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
       rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 
@@ -22,25 +29,32 @@ ul{
 }
 
 li {
-  background-color:  darkgray;
+  background: rgb(84, 54, 255);
+  background: linear-gradient(90deg, rgba(84, 54, 255, 1) 0%, rgba(188, 39, 255, 1) 60%);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+      rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
   padding: 16px;
-  border: 3px solid white;
+  border: none;
   border-radius: 20px;
   margin-top: 8px;
+
+  transition: background-color .5s;
+}
+
+li:hover{
+  background: linear-gradient(90deg, rgba(84, 54, 255, 1) 40%, rgba(188, 39, 255, 1) 75%);
 }
 
 .question-text{
-  color: darkblue;
   font-size: 24px;
 }
 
 .final-results {
   margin: 0 auto;
 
-  background-color: gray;
+  background-color: #29334e46;
   padding: 16px;
   border-radius: 16px;
-  color: white;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 
@@ -49,9 +63,11 @@ li {
 }
 
 button {
-  /* Green */
+  background: rgb(84, 54, 255);
+  background: linear-gradient(90deg, rgba(84, 54, 255, 1) 0%, rgba(188, 39, 255, 1) 60%);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+      rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
   border: none;
-  color: white;
   padding: 16px 24px;
   text-align: center;
   text-decoration: none;
