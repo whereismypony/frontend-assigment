@@ -23,7 +23,7 @@ function App() {
   return array;
   }
 
-  // Helper Function
+  // Helper Function to handle onclicks
   const optionClicked = (clickedOption, isCorrect) => {
     if(clickedOption === isCorrect){
       setScore(score +1);
@@ -35,11 +35,12 @@ function App() {
       setFinalResults(true);
     }
   }
+  // helper function to handle the game restarting by refreshing the page
   const restartGame = () =>{
     window.location.reload(false);
   }
 
-
+// api call on loading page
   useEffect(() => {
       fetch('https://opentdb.com/api.php?amount=10&category=9&type=multiple')
       .then(res => res.json())
@@ -60,15 +61,18 @@ function App() {
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
+    // adding the correct answer to the incorrect answers and shuffeling them
     questions[CurrentQuestion].incorrect_answers.push(questions[CurrentQuestion].correct_answer)
     shuffleAnswers(questions[CurrentQuestion].incorrect_answers);
+
+    // this is where the page starts
     return (
       <div className="App">
         <h1>The Random Quiz</h1>
 
         <h2>Current Score: {score}</h2>
 
-        {/* 4. final results */}
+        {/* final results tab which is shown when all the questions have been answered */}
         {showFinalResults ? (
           < div className='final-results'>
             <h1>Final Results</h1>
@@ -81,7 +85,7 @@ function App() {
         ) : (
 
           
-          /* 3. Question Card */
+          /* the Question Card  */
           <div className='question-card'>
               <h2>Question {CurrentQuestion + 1} out of {questions.length}</h2>
               <h3 className='question-text'>{questions[CurrentQuestion].question}</h3>
